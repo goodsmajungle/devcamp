@@ -21,6 +21,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './strategies';
+import { Order, Point} from '../payment/entities';
 
 @Module({
   imports: [
@@ -39,6 +40,8 @@ import { JwtStrategy } from './strategies';
     PassportModule.register({ defaultStrategy: 'jwt' }),
     TypeOrmModule.forFeature([
       User,
+      Order,
+      Point,
       AccessToken,
       RefreshToken,
       AccessLog,

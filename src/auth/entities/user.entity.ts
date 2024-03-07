@@ -3,8 +3,8 @@ import { BaseEntity } from '../../common/entity';
 import { RefreshToken } from './refresh-token.entity';
 import { AccessToken } from './access-token.entity';
 import { AccessLog } from './access-log.entity';
-import {Order} from '../../payment/entities';
-import {Point} from '../../payment/entities';
+import { Order, Point} from '../../payment/entities';
+
 
 export type UserRole = 'admin' | 'user';
 

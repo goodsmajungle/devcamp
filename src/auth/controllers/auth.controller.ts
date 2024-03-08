@@ -7,6 +7,8 @@ import {
   RefreshReqDto,
   SignupResDto,
 } from '../dto';
+import { ApiBody } from '@nestjs/swagger';
+
 
 @Controller('auth')
 export class AuthController {
@@ -15,6 +17,7 @@ export class AuthController {
     private readonly userService: UserService,
   ) {}
 
+  @ApiBody({})
   @Post('login')
   async login(
     @Req() req,
@@ -26,7 +29,7 @@ export class AuthController {
       endpoint: `${method} ${originalUrl}`,
       ua: req.headers['user-agent'] || '',
     };
-
+    
     return this.authService.login(
       loginReqDto.email,
       loginReqDto.password,
@@ -35,6 +38,7 @@ export class AuthController {
   }
 
   @Post('signup')
+  @ApiBody({})
   async signup(@Body() createUserDto: CreateUserDto): Promise<SignupResDto> {
     const user = await this.userService.createUser(createUserDto);
     return {

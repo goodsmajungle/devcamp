@@ -4,6 +4,7 @@ import { RefreshToken } from './refresh-token.entity';
 import { AccessToken } from './access-token.entity';
 import { AccessLog } from './access-log.entity';
 import { Order, Point} from '../../payment/entities';
+import { ShoppingCart } from 'src/payment/entities/shopping-cart.entity';
 
 
 export type UserRole = 'admin' | 'user';
@@ -44,5 +45,8 @@ export class User extends BaseEntity {
   orders: Relation<Order[]>;
 
   @OneToOne(() => Point, (point) => point.user)
-  point: Relation<Point[]>;
+  point: Relation<Point>;
+
+  @OneToOne(() => ShoppingCart, (shoppingCart) => shoppingCart.user)
+  shoppingCart: Relation<ShoppingCart>;
 }

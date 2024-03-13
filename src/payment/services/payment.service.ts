@@ -1,6 +1,7 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { Order, OrderItem } from '../entities';
 import { CreateOrderDto } from '../dto/create-order.dto';
+import { ProductDto } from '../dto/product.dto';
 import { BusinessException } from '../../exception';
 import { ProductService } from './product.service';
 import {
@@ -20,6 +21,7 @@ export class PaymentService {
     private readonly shippingInfoRepository: ShippingInfoRepository,
     private readonly orderRepository: OrderRepository,
   ) {}
+
 
   @Transactional()
   async initOrder(dto: CreateOrderDto): Promise<Order> {
@@ -46,7 +48,10 @@ export class PaymentService {
   @Transactional()
   async completeOrder(orderId: string): Promise<Order> {
     return this.orderRepository.completeOrder(orderId);
+    
   }
+
+
 
   private async createOrder(
     userId: string,
@@ -103,6 +108,9 @@ export class PaymentService {
     const finalAmount = totalAmount - (couponDiscount + pointDiscount);
     return finalAmount < 0 ? 0 : finalAmount;
   }
+
+
+  // applyCoupon과 applyPoints에서 장바구니 쿠폰으로 할 것인지, 개별 쿠폰으로 할 것인지에 대한 수정 필요
 
   private async applyCoupon(
     couponId: string,

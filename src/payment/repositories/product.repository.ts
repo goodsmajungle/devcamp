@@ -19,4 +19,9 @@ export class ProductRepository extends Repository<Product> {
       id: In(productIds),
     });
   }
+
+  async stockCheckById(productId: string): Promise<Number>{
+    const product = await this.find({where:{id:productId}})
+    return product[0].stock
+  }
 }

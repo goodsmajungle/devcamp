@@ -19,7 +19,7 @@ export class ProductService {
     }
     // 재고가 충분한 경우
     else {
-      return true
+      return true;
     }
      
   }

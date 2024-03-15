@@ -1,5 +1,6 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, OneToMany, Relation } from 'typeorm';
 import { BaseEntity } from '../../common/entity';
+import { Coupon } from './coupon.entity';
 
 export type ProductStatus = 'available' | 'out-of-stock';
 
@@ -25,4 +26,7 @@ export class Product extends BaseEntity {
 
   @Column({ type: 'varchar', length: 50, default: 'available' })
   status: ProductStatus;
+
+  @OneToMany(() => Coupon, (coupon) => coupon.product)
+  coupon: Relation<Coupon>;
 }

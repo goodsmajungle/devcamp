@@ -14,3 +14,4 @@ export class CouponRepository extends Repository<Coupon> {
     super(repo.target, repo.manager, repo.queryRunner);
   }
 }
+

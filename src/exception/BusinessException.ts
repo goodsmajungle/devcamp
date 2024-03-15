@@ -5,7 +5,8 @@ export type ErrorDomain =
   | 'auth'
   | 'user'
   | 'payment'
-  | 'investment';
+  | 'investment'
+  | 'product';
 
 export class BusinessException extends Error {
   public readonly id: string;

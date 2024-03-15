@@ -21,29 +21,26 @@ export class ShoppingCartRepository extends Repository<ShoppingCart> {
     super(repo.target, repo.manager, repo.queryRunner);
   }
 
-  async fillShoppingCart(
-    userId: string,
-    productId: string,
-    quantity: number)
-  {
-    const user = await this.userRepository.findOne({ where: { id: userId } });
-    const user = await this.findOne({ where: { id: userId } });
-  }
 
-  async addToShoppingCart(
-    userId: string,
-    orderItems: OrderItem[],
-    finalAmount: number,
-    shippingInfo?: ShippingInfo,
-  ): Promise<Order> {
-    const user = await this.userRepository.findOne({ where: { id: userId } });
-    const order = new Order();
-    order.user = user;
-    order.amount = finalAmount;
-    order.status = 'started';
-    order.items = orderItems;
-    order.shippingInfo = shippingInfo;
-    return this.save(order);
-  }
+  // async addToShoppingCart(
+  //   userId: string,
+  //   orderItems: OrderItem[],
+  //   finalAmount: number,
+  //   shippingInfo?: ShippingInfo,
+  // ): Promise<Order> {
+  //   const user = await this.userRepository.findOne({ where: { id: userId } });
+  //   const order = new Order();
+  //   order.user = user;
+  //   order.amount = finalAmount;
+  //   order.status = 'started';
+  //   order.items = orderItems;
+  //   order.shippingInfo = shippingInfo;
+  //   return this.save(order);
+  // }
 
+  // async emptyShoppingCart(
+  //   shoppingCart: ShoppingCart;
+  // ){
+  //   d
+  // }
 }
